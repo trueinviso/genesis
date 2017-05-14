@@ -1,9 +1,9 @@
 class User < ApplicationRecord
-  #has_one :subscription
-  #has_many :favorite_screens
-  #has_many :favorites, through: :favorite_screens, source: :screen
-  #has_many :purchased_screens
-  #has_many :purchased, through: :purchased_screens, source: :screen
+  has_one :subscription
+  has_many :favorite_screens
+  has_many :favorites, through: :favorite_screens, source: :screen
+  has_many :downloaded_screens
+  has_many :downloaded, through: :downloaded_screens, source: :screen
 
 
   before_save { self.email = email.downcase }

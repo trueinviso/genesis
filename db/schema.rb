@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20170514191501) do
     t.string "password_confirmation"
     t.string "password_digest"
     t.string "stripe_id"
+    t.boolean "send_product_updates"
+    t.boolean "send_new_screens_updates"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

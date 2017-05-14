@@ -11,6 +11,8 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :password_confirmation
       t.string :password_digest
       t.string :stripe_id
+      t.boolean :send_product_updates
+      t.boolean :send_new_screens_updates
 
       t.timestamps
     end
