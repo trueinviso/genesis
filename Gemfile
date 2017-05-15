@@ -40,10 +40,12 @@ gem 'awesome_print'
 gem 'pundit'
 gem 'stripe'
 gem 'oauth2'
+gem 'aws-sdk-s3', '~> 1.0.0.rc2'
 gem 'rails-controller-testing'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'dotenv-rails'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
