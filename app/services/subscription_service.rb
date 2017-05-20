@@ -1,8 +1,8 @@
 class SubscriptionService
   def create_customer(args)
     Stripe::Customer.create({
-      source: payment_token,
-      email:  email
+      source: args.payment_token,
+      email:  args.email
     })
   end
 
@@ -12,8 +12,8 @@ class SubscriptionService
 
   def create_subscription(args)
     Stripe::Subscription.create({
-      customer: customer,
-      plan: plan
+      customer: args.customer_id,
+      plan: args.plan
     })
   end
 

@@ -34,7 +34,8 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 
 gem 'foundation-rails'
-gem 'haml'
+gem 'haml', git: 'https://github.com/haml/haml'
+gem 'sass'
 gem 'font-awesome-rails'
 gem 'awesome_print'
 gem 'pundit'
