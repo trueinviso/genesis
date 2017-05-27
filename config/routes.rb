@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  mount ImageUploader::UploadEndpoint => "/images/upload"
+
   get 'sessions/new'
 
   get '/sign_up',  to: 'users#new'
@@ -13,8 +15,9 @@ Rails.application.routes.draw do
   get    '/logout',  to: 'sessions#destroy'
 
   namespace :admin do
+    resources :screens
     root 'screens#index'
   end
 
-  root to: 'users#new'
+  root to: 'sessions#new'
 end

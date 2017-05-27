@@ -41,10 +41,12 @@ gem 'awesome_print'
 gem 'pundit'
 gem 'stripe'
 gem 'oauth2'
-gem 'aws-sdk-s3', '~> 1.0.0.rc2'
 gem 'rails-controller-testing'
 gem 'acts-as-taggable-on'
 gem 'jquery-rails'
+gem 'shrine'
+gem 'aws-sdk', '~> 2.1'
+gem 'roda'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

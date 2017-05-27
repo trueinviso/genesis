@@ -8,10 +8,13 @@ class Admin::ScreensController < Admin::BaseController
   end
 
   def new
-    @screen = screen.new
+    authorize Screen
+    @screen = Screen.new
+    @screen.build_picture
   end
 
   def create
+    authorize Screen
     @screen = Screen.new(screen_params)
     if @screen.save
       redirect_to admin_root_url
@@ -27,6 +30,6 @@ class Admin::ScreensController < Admin::BaseController
     end
 
     def screen_params
-      params.require(:screen).permit(:image_url, :s3_url)
+      params.require(:screen).permit(:image_link, picture_attributes: [ :image ] )
     end
 end

@@ -1,0 +1,24 @@
+= form_for [:admin, @screen], :html => {:multipart => true } do |f|
+  - if @screen.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@screen.errors.count, "error")} prohibited this media item from being saved:"
+      %ul
+        - @screen.errors.full_messages.each do |msg|
+          %li= msg
+
+  %div.small-10.columns
+    - if f.object.picture.present? && f.object.picture.image.present?
+      = image_tag f.object.picture.image.url
+      %span Remove Attachment:
+    %div.small-10.columns
+      = f.text_field :image_link
+
+    %div.small-10.columns
+      = f.fields_for :picture do |p|
+        /= f.check_box :remove_image
+        = p.label :image
+        /= f.hidden_field :image, value: f.object.cached_image_data
+        = p.file_field :image, html: { multipart: true }
+
+  .actions
+    = f.submit 'Save'
