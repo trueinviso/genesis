@@ -1,0 +1,9 @@
+%p#notice= notice
+
+- if @screen.image.present?
+  = image_tag @screen.image.url(public: true)
+
+
+= link_to 'Edit', edit_admin_screen_path(@screen)
+\|
+= link_to 'Back', admin_screens_path

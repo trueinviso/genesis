@@ -8,10 +8,12 @@ class Admin::ScreensController < Admin::BaseController
   end
 
   def new
+    authorize Screen
     @screen = screen.new
   end
 
   def create
+    authorize Screen
     @screen = Screen.new(screen_params)
     if @screen.save
       redirect_to admin_root_url

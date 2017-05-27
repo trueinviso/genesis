@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   private
 
     def require_login
+      return
       unless logged_in? # && current_user.active_subscription?
         redirect_to login_path
       end

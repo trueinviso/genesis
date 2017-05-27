@@ -1,17 +1,27 @@
-class Admin::BaseController < ApplicationController
+class Admin::BaseController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
   include ApplicationHelper
   include Pundit
 
+  after_action :verify_authorized
+  before_action :require_login
 
-  before_filter :require_login
-
-  layout 'admin'
+  #layout 'admin'
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   private
+
+    # Override pundit methods to namespace policies in admin
+    def authorize(record, query = nil)
+      super([:admin, record], query)
+    end
+
+    def policy_scope(scope)
+      super([:admin, scope])
+    end
+    ###########################
 
     def require_login
       unless logged_in? && current_user.admin?

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get    '/logout',  to: 'sessions#destroy'
 
   namespace :admin do
+    resources :screens
     root 'screens#index'
   end
 
