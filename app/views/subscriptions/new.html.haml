@@ -1,0 +1,36 @@
+%div.small-12.columns
+  %h2.small-12.columns Payment information
+
+%div
+  = form_for @subscription do |f|
+    /= hidden_field_tag 'payment_token', nil, { id: 'payment_token' }
+    %div.small-12.columns
+      %div.small-12.columns
+        %span Billing cycle
+      %div.small-12.columns
+        = radio_button_tag :plan, 'monthly', checked: true
+        = label_tag(:plan_monthly, 'Monthly - $15 every month')
+        = radio_button_tag :plan, 'yearly'
+        = label_tag(:plan_yearly, 'Yearly - $120 once a year')
+    %div.small-12.columns
+      %fieldset
+        %div.small-12.columns
+          = label_tag(:card_number, 'Card details*')
+          = text_field_tag :card_number, nil, placeholder: 'Card number', size: 20
+          %div.error-message#card_number-error
+        %div.small-12.medium-3.columns
+          = label_tag(:card_month, 'Expiration month*')
+          = select_month Date.today, { use_month_numbers: true }, { id: 'card_month' }
+        %div.small-12.medium-3.columns
+          = label_tag(:card_year, 'Expiration year*')
+          = select_year Date.today, { end_year: Date.today.year + 10 }, { id: 'card_year' }
+          %div.error-message#cvc-error
+        %div.small-12.medium-6.columns
+          = label_tag(:cvc, 'CVC: required')
+          = text_field_tag :cvc, nil, placeholder: 'CVC', size: 4
+          %div.error-message#cvc-error
+
+    %div.small-12.columns
+      %div.small-12.columns= f.submit 'Get started', id: 'stripe-submit'
+
+      %p.small-12.columns Your card will be charged upon submitting this form and begin your subscription.
