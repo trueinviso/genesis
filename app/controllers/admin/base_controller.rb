@@ -15,7 +15,7 @@ class Admin::BaseController < ApplicationController
 
     def require_login
       unless logged_in? && current_user.admin?
-        redirect_to login_path
+        redirect_to root_path
       end
     end
 

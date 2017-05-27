@@ -37,10 +37,15 @@ ActiveRecord::Schema.define(version: 20170515004549) do
   end
 
   create_table "subscriptions", force: :cascade do |t|
+    t.integer "user_id"
     t.string "stripe_customer_id"
     t.string "stripe_subscription_id"
     t.string "stripe_payment_token"
     t.string "stripe_plan_id"
+    t.string "card_exp_month"
+    t.string "card_exp_year"
+    t.string "card_last4"
+    t.string "card_brand"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -71,7 +76,8 @@ ActiveRecord::Schema.define(version: 20170515004549) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "display_name"
+    t.string "first_name"
+    t.string "last_name"
     t.string "username"
     t.string "email"
     t.string "role"

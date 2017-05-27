@@ -14,9 +14,9 @@ class User < ApplicationRecord
 
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 },
-                       confirmation: true
-  validates_presence_of :password_confirmation
-  validate :accept_terms_and_conditions
+                       confirmation: true, on: :create
+  validates_presence_of :password_confirmation, on: :create
+#  validate :accept_terms_and_conditions
 
   def admin?
     #role == 'admin'

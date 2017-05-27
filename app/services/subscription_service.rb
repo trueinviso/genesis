@@ -1,25 +1,27 @@
 class SubscriptionService
-  def create_customer(args)
-    Stripe::Customer.create({
-      source: args.payment_token,
-      email:  args.email
-    })
+  def create_customer(payload)
+    Stripe::Customer.create(payload)
   end
 
   # Use this to update payment token?
-  def update_customer(args)
+  def update_customer(payload)
+    Stripe::Customer.update(payload)
   end
 
-  def create_subscription(args)
-    Stripe::Subscription.create({
-      customer: args.customer_id,
-      plan: args.plan
-    })
+  def create_subscription(payload)
+    # Need to check if customer has active subscription
+    Stripe::Subscription.create(payload)
   end
 
-  def update_subscription(args)
+  def find_customer(stripe_id)
+    Stripe::Customer.retrieve(stripe_id)
   end
 
-  def cancel_subscription(args)
+  def update_subscription(payload)
+    Stripe::Subscription.update(payload)
+  end
+
+  def cancel_subscription(id)
+    Stripe::Subscription.cancel(id)
   end
 end
