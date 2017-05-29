@@ -1,6 +1,5 @@
 class Admin::ScreensController < Admin::BaseController
   include ScreensHelper
-  include SessionsHelper
 
   def index
     @screens = policy_scope(Screen).filter(index_params.slice(:search))
@@ -23,6 +22,26 @@ class Admin::ScreensController < Admin::BaseController
     end
   end
 
+  def edit
+    authorize Screen
+    @screen = Screen.find(params[:id])
+  end
+
+  def update
+    authorize Screen
+    @screen = Screen.find(params[:id])
+    if @screen.update_attributes(screen_params)
+      redirect_to admin_screens_path
+    else
+      render 'edit'
+    end
+  end
+
+  def show
+    authorize Screen
+    @screen = Screen.find(params[:id])
+  end
+
   private
 
     def index_params
@@ -30,6 +49,6 @@ class Admin::ScreensController < Admin::BaseController
     end
 
     def screen_params
-      params.require(:screen).permit(:image_link, picture_attributes: [ :image ] )
+      params.require(:screen).permit(:category_id, :tag_list, picture_attributes: [ :image ] )
     end
 end

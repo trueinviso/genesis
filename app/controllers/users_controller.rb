@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    byebug
     @user = User.new(user_params)
     if @user.save
       log_in @user
@@ -15,6 +14,21 @@ class UsersController < ApplicationController
     else
       @user.destroy
       render 'new'
+    end
+  end
+
+  def edit
+    authorize User
+    @user = User.find(params[:id])
+  end
+
+  def update
+    authorize User
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      redirect_to edit_user_path
+    else
+      render 'edit'
     end
   end
 

@@ -1,21 +1,26 @@
-/= render 'layouts/nav'
-%div.row.small-12.medium-10.small-centered.columns#filters
-//  %div.small-12.medium-4.columns
-//    = form_tag admin_users_path, method: 'get' do
-//      %div.search-field
-//        = text_field_tag :search, params[:search], placeholder: 'Search by Email or Name'
-//        %span.search-icon &#9906;
-//      = submit_tag 'Search', id: 'search-submit'
-//
-//  %div.small-12.medium-2.columns.buttons
-//    %button= link_to 'Add user', new_admin_user_path
-//
-%div.small-12.medium-10.small-centered.columns#admin-users
-  %div.row.user-heading-row
-    %h5.small-2.columns.user-heading S3 Link
-    %h5.small-2.columns.last.user-heading Image Link
-  %div.row.user-rows
-    - @screens.each do |screen|
-      %div.small-12.row.user-row
-        %div.small-3.columns.user-element= screen.amazon_s3_link
-        %div.small-2.columns.user-element= screen.image_link
+%h1 Listing Screens
+
+%table
+  %tr
+    %th Picture
+    %th Category
+    %th
+    %th
+    %th
+    %th
+
+  - @screens.each do |screen|
+    %tr
+      -if screen.picture.present?
+        %td= image_tag screen.picture.image.url(public: true)
+      -else
+        %td
+      %td= screen.category.name
+      %td= link_to 'Show', admin_screen_path(screen)
+      %td= link_to 'Edit', edit_admin_screen_path(screen)
+      %td= link_to 'Destroy', [:admin, screen], method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Screen', new_admin_screen_path
+

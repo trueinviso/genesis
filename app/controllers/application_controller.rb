@@ -1,10 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
-
-  before_action :require_login
+  include Pundit
+  include ApplicationHelper
 
   layout 'application'
+
+  after_action :verify_authorized
+  before_action :require_login
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
