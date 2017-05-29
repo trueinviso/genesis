@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   post '/sign_up', to: 'users#create'
 
   resources :subscriptions, except: [:index]
+  resources :screens, only: [:index, :show]
+  resources :downloaded_screens, only: [:index]
+  resources :favorite_screens, only: [:index]
+  resources :users, only: [:edit, :update]
 
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
@@ -16,6 +20,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :screens
+    resources :categories
     root 'screens#index'
   end
 

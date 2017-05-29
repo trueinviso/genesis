@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
   # TODO: add the tests from the book for login
+
+  skip_before_action :require_login, only: [:new, :create]
+  skip_after_action :verify_authorized
+
   def new
   end
 
@@ -8,7 +12,11 @@ class SessionsController < ApplicationController
     if user.present? && user.authenticate(params[:session][:password])
       # Log the user in and redirect to the user's show page.
       log_in user
-      user.admin? ? redirect_to admin_root_path : redirect_to root_path
+      if user.admin?
+        redirect_to admin_root_path
+      else
+        redirect_to root_path
+      end
     else
       # Create an error message.
       flash.now[:danger] = 'Invalid email/password combination'

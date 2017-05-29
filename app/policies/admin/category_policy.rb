@@ -1,4 +1,4 @@
-class Admin::ScreenPolicy < ApplicationPolicy
+class Admin::CategoryPolicy < ApplicationPolicy
   class Scope
     attr_reader :user, :scope
 
@@ -8,7 +8,7 @@ class Admin::ScreenPolicy < ApplicationPolicy
     end
 
     def resolve
-      scope.last.includes(:picture, :category).all
+      scope.last.all
     end
   end
 
@@ -24,11 +24,11 @@ class Admin::ScreenPolicy < ApplicationPolicy
     user.admin?
   end
 
-  def show?
+  def update?
     user.admin?
   end
 
-  def update?
+  def show?
     user.admin?
   end
 

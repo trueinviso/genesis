@@ -1,4 +1,4 @@
-class ScreenPolicy < ApplicationPolicy
+class FavoriteScreenPolicy < ApplicationPolicy
   class Scope
     attr_reader :user, :scope
 
@@ -8,15 +8,11 @@ class ScreenPolicy < ApplicationPolicy
     end
 
     def resolve
-      scope.all
+      scope.where(user: user)
     end
   end
 
   def index?
-    true
-  end
-
-  def show?
     true
   end
 end

@@ -10,8 +10,13 @@
     - if f.object.picture.present? && f.object.picture.image.present?
       = image_tag f.object.picture.image.url
       %span Remove Attachment:
+
     %div.small-10.columns
-      = f.text_field :image_link
+      = f.collection_select(:category_id, Category.all, :id, :name, prompt: "Select a Category")
+
+    %div.small-10.columns
+      = f.label :tag_list
+      = f.text_field :tag_list
 
     %div.small-10.columns
       = f.fields_for :picture do |p|
