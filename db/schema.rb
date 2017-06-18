@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170528201320) do
+ActiveRecord::Schema.define(version: 20170617183302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(version: 20170528201320) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "permissions", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.string "display_name"
+    t.string "short_description"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "pictures", force: :cascade do |t|
     t.string "name"
     t.text "image_data"
@@ -43,6 +53,16 @@ ActiveRecord::Schema.define(version: 20170528201320) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.string "display_name"
+    t.string "short_description"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "screens", force: :cascade do |t|
@@ -80,6 +100,18 @@ ActiveRecord::Schema.define(version: 20170528201320) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_permissions", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "permission_id", null: false
+    t.index ["user_id", "permission_id"], name: "index_user_permissions_on_user_id_and_permission_id"
+  end
+
+  create_table "user_roles", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "role_id", null: false
+    t.index ["user_id", "role_id"], name: "index_user_roles_on_user_id_and_role_id"
   end
 
   create_table "users", force: :cascade do |t|

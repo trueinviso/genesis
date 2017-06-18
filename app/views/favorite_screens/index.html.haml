@@ -1,1 +1,13 @@
-favorite screens
+%div.screens-wrapper.row
+
+  %div.small-3.columns.screens-categories-list
+    %h2 Your favorites
+
+  %div.small-9.columns.screens-right-panel
+    //------ Cards -------//
+    %div.screens-card-list
+      %ul.small-block-grid-5
+        - @favorite_screens.each do |favorite_screen|
+          %li
+            - cache favorite_screen do
+              = render partial: 'shared/card', locals: { screen: favorite_screen.screen }

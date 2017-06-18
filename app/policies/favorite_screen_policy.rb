@@ -8,7 +8,7 @@ class FavoriteScreenPolicy < ApplicationPolicy
     end
 
     def resolve
-      scope.where(user: user)
+      scope.includes(:user, screen: [:picture, :favorited_by, :downloaded_by]).where(user: user)
     end
   end
 

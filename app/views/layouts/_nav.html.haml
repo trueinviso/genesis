@@ -1,16 +1,16 @@
 %div.small-12.columns#nav
-  %h1.small-3.medium-2.columns.text-right Adam
-  %div.small-6.medium-8.columns#search-form
+  %h1.small-2.medium-2.columns.text-right= link_to 'Adam', screens_path
+  %div.small-6.medium-7.large-8.columns#search-form
     = form_tag screens_path, method: 'get' do
       %div.search-field
         = text_field_tag :search, params[:search], placeholder: 'Search for a type of screen'
         %span.search-icon &#9906;
       = submit_tag 'Search', id: 'search-submit'
-  %div.small-3.medium-2.columns
+  %div.small-4.medium-3.large-2.columns
     %div.icon-bar.three-up
-      %a.item{ href: '#' }
+      %a.item{ href: favorite_screens_path }
         %i.icon-heart
-      %a.item{ href: '#' }
+      %a.item{ href: downloaded_screens_path }
         %i.icon-download-cloud
-      %a.item{ href: '#' }
+      %a.item{ href: edit_user_path(current_user) }
         %i.icon-user

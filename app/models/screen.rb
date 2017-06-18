@@ -11,4 +11,13 @@ class Screen < ApplicationRecord
   accepts_nested_attributes_for :picture, allow_destroy: true
 
   validates :category, presence: true
+
+  def self.tag_name(tag_name)
+    includes(:picture, :favorite_screens, :downloaded_screens).joins(:tags).where('tags.name = :tag_name', tag_name: tag_name)
+  end
+
+  def self.category_name(category_name)
+    joins(:category).where('categories.name = :category_name', category_name: category_name)
+  end
+
 end

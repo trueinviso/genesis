@@ -43,9 +43,14 @@ gem 'stripe'
 gem 'oauth2'
 gem 'rails-controller-testing'
 gem 'jquery-rails'
+gem 'jquery-turbolinks'
+### Shrine gems ###
 gem 'shrine'
 gem 'aws-sdk', '~> 2.1'
 gem 'roda'
+###
+gem "seed-fu", "~> 2.3"
+gem "forgery"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

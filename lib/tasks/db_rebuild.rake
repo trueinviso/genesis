@@ -59,7 +59,7 @@ namespace :db do
     puts "Seeding the db..."
     Rake::Task['db:seed'].invoke
     puts "Cloning the test db..."
-    Rake::Task['db:test:clone'].invoke
+    Rake::Task['db:test:prepare'].invoke
     puts "Done."
   end
 
