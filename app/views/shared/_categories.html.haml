@@ -1,0 +1,5 @@
+%div.categories-list
+  %ul
+    %li= link_to "All (#{categories.size})", screens_path
+    - categories.each do |category|
+      %li= link_to "#{category.name} (#{category.screens.size})", screens_path(category_name: category.name)
