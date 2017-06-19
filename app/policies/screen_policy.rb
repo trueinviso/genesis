@@ -8,7 +8,7 @@ class ScreenPolicy < ApplicationPolicy
     end
 
     def resolve
-      scope.includes([:picture, :downloaded_by, :favorited_by]).all
+      scope.includes([:picture, :downloaded_by, :favorited_by, :category, :tags]).all
     end
   end
 
