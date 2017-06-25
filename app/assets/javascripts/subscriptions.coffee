@@ -1,4 +1,11 @@
 $(document).ready ->
+
+  $('input[type=radio]', '#new_subscription').on 'change', ->
+    $('.radio').toggleClass('active')
+
+  $('input[type=radio]', '#edit_subscription').on 'change', ->
+    $('.radio').toggleClass('active')
+
   Stripe.setPublishableKey($("meta[name='stripe-key']").attr('content'))
   $('#stripe-submit').click ->
     $('#new_subscription').submit ->

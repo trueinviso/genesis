@@ -6,4 +6,12 @@ class UserPolicy < ApplicationPolicy
   def update?
     true
   end
+
+  def notifications?
+    true
+  end
+
+  def edit_subscription?
+    true
+  end
 end

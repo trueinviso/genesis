@@ -1,3 +1,4 @@
+
 = form_for @user do |f|
   - if @user.errors.any?
     #error_explanation
@@ -6,8 +7,21 @@
         - @user.errors.full_messages.each do |msg|
           %li= msg
 
-  %div.field
-    = f.label :username
+  %div.small-12.column
+    %div.small-6.column.no-padding
+      = label_tag :first_name
+      = f.text_field :first_name
+    %div.small-5.column.no-padding
+      = label_tag :last_name
+      = f.text_field :last_name
+  %div.small-12.column
+    = label_tag :username
     = f.text_field :username
-  %div.actions
+  %div.small-12.column
+    = label_tag :email, 'Email address'
+    = f.text_field :email
+  %div.small-12.column
+    = label_tag :password, 'Change password'
+    = f.text_field :password
+  %div.small-12.column
     = f.submit 'Save'

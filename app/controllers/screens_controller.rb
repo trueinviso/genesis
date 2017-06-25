@@ -7,6 +7,11 @@ class ScreensController < ApplicationController
     authorize @screens
   end
 
+  def search
+    @screens = policy_scope(Screen).filter(search_params.slice(:search))
+    authorize @screens
+  end
+
   def show
     authorize Screen
     @screen = Screen.find(params[:id])
@@ -14,7 +19,11 @@ class ScreensController < ApplicationController
 
   private
 
-    def index_params
-      params.permit(:tag_name, :category_name)
-    end
+  def index_params
+    params.permit(:tag_name, :category_name)
+  end
+
+  def search_params
+    params.permit(:search)
+  end
 end

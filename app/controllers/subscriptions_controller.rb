@@ -1,5 +1,7 @@
 class SubscriptionsController < ApplicationController
 
+  skip_after_action :verify_authorized, only: [:new, :create, :edit]
+
   def new
     @subscription = Subscription.new
   end

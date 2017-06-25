@@ -1,25 +1,23 @@
 class UsersController < ApplicationController
 
-  skip_before_action :require_login, only: [:new, :create]
-
-  def new
-    @user = User.new
-  end
-
-  def create
-    @user = User.new(user_params)
-    if @user.save
-      log_in @user
-      redirect_to new_subscription_path
-    else
-      @user.destroy
-      render 'new'
-    end
-  end
-
   def edit
     authorize User
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
+  end
+
+  def edit_subscription
+    authorize User
+    @user = current_user
+  end
+
+
+  def notifications
+    authorize User
+    @user = User.find(current_user.id)
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def update
@@ -34,13 +32,8 @@ class UsersController < ApplicationController
 
   private
 
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :username, :password,
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :username, :password,
                                    :password_confirmation, :email)
-    end
-
-    def customer_args
-      OpenStruct.new({ email: user_params[:email] })
-    end
-
+  end
 end

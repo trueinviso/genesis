@@ -20,4 +20,8 @@ class Screen < ApplicationRecord
     joins(:category).where('categories.name = :category_name', category_name: category_name)
   end
 
+  def self.search(search)
+    joins(:tags, :category).where('categories.name ILIKE :search OR ' \
+                                  'tags.name ILIKE :search', search: "%#{search}%")
+  end
 end

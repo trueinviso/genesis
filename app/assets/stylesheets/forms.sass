@@ -1,0 +1,176 @@
+@import 'variables_and_mixins'
+@import 'fonts'
+
+.wrapper
+  margin-top: 73px
+
+.align-center
+  display: flex
+  flex-flow: row wrap
+  justify-content: center
+  clear: both
+
+.align-vertical
+  align-items: center
+
+.alerts
+  p
+    margin: 0
+
+.forms
+  .external-header
+    font-family: 'Roboto'
+    font-size: 35px
+    line-height: 1.29
+    color: $regent-gray
+    margin-bottom: 20px
+
+  .instructions
+    color: $regent-gray
+    font-family: 'Roboto'
+    font-size: 14px
+
+  input[type="radio"]
+    margin-top: 10px
+    margin-bottom: 0
+
+  input[type="submit"]
+    background: $azure
+    color: white
+    padding: 14px 93.5px 17px 93.5px
+    font-size: 16px
+    margin-top: 15px
+    margin-bottom: 15px
+    cursor: pointer
+
+  label
+    font-size: 12px
+    line-height: 2.83
+    color: $regent-gray
+
+  input
+    border-radius: 3px
+    border: solid 1px $iron
+    box-shadow: none
+
+  input::placeholder
+    font-size: 14px
+    color: $loblolly
+
+  input:focus
+    border-color: $azure
+    box-shadow: none
+
+  .no-padding
+    padding: 0
+
+  .active
+    border: solid 1px $azure
+    background-color:  rgba(13, 119, 248, 0.15)
+
+    label
+      color: $azure
+
+
+
+#login
+  height: 100%
+  padding: 109px 0 114px 0
+  background: $white
+  border: solid 1px $iron
+
+  .password-label
+    padding: 0
+
+  .forgot-password-link
+    float: right
+    font-family: 'Roboto'
+    font-size: 12px
+    color: $azure
+    line-height: 30px
+
+#signup
+  background: $white
+  border: solid 1px $iron
+  padding: 89px 150px 99px 150px
+
+.side-nav
+  margin-left: 50px
+
+  div
+    margin-top: 20px
+
+  a
+    color: $slate-gray
+
+  .active-link
+    color: $azure
+
+  div:first-child
+    margin-top: 0px
+
+#edit-user
+  background: $white
+  border: solid 1px $iron
+  padding: 89px 150px 99px 150px
+
+  #user_first-name
+    margin-right: 10px
+
+  input[type="submit"]
+    padding: 11px 32.5px 11px 32.5px
+
+  .label-top
+    font-size: 14px
+    color: $abbey
+
+  .label-bottom
+    display: block
+    margin-top: -20px
+    margin-left: 24px
+
+#notifications
+  padding: 37px 0 38px 41px
+
+  .save-button
+    margin-bottom: 41px
+
+#new-subscription
+  background: $white
+  border: solid 1px $iron
+  padding: 89px 150px 106px 150px
+
+.monthly-radio, .yearly-radio
+  border: solid 1px $iron
+  border-radius: 3px
+
+.section
+  border-bottom: solid 1px $black_squeeze
+  padding-bottom: 29px
+  padding-top: 29px
+
+.section:first-of-type
+  padding-top: 0
+
+.card-on-file
+  color: $azure
+  background: rgba(13, 119, 248, 0.15)
+  padding: 5px 5px 5px 15px
+  border: 1px solid $azure
+  border-radius: 3px
+
+  span
+    font-size: 14px
+
+.change-card-link
+  font-size: 12px
+  margin-top: 10px
+  a
+    color: $azure
+    font-size: 12px
+
+#edit-subscription-partial
+  .section
+    padding: 37px 37px 42px 41px
+
+

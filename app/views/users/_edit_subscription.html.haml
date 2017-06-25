@@ -1,0 +1,45 @@
+%div#edit-subscription-partial
+  = form_for user do |f|
+    = f.fields_for :subscription do |s_form|
+      /= hidden_field_tag 'payment_token', nil, { id: 'payment_token' }
+      %div.small-12.columns.section
+        %fieldset
+          %div.small-12.columns
+            %div.small-6.columns.no-padding
+              %label Plan/Subscription
+            %div.small-6.columns.no-padding
+              %label Plan/Subscription
+          %div.small-12.columns
+            %div.monthly-radio.small-6.column.radio.active
+              = s_form.radio_button :stripe_plan_id, 'monthly', checked: true
+              = s_form.label(:stripe_plan_id, 'Monthly - $15 every month')
+            %div.yearly-radio.small-6.column.radio
+              = s_form.radio_button :stripe_plan_id, 'yearly'
+              = s_form.label(:stripe_plan_id, 'Yearly - $120 once a year')
+          %div.small-12.columns
+            %label="Your #{user.subscription.stripe_plan_id} Subscription will renew on <billing date> for <price>"
+      %div.small-12.columns.section#edit-payment-method
+        %fieldset
+          %div.small-12.columns
+            %label Card on file
+            %div.small-5.column.card-on-file
+              %span="#{user.subscription.card_brand} ...#{user.subscription.card_last4}"
+            %div.small-4.column.end.change-card-link
+              (
+              = link_to "Change", "#"
+              )
+          %div.small-12.columns
+            %label= "Expires on #{user.subscription.card_exp_month}/#{user.subscription.card_exp_year[2..3]}"
+
+    %div.small-12.columns.section
+      %fieldset
+        %div.small-12.column
+          = f.label :email, "Billing email"
+          = f.text_field :email
+          %label All billing-related emails will be sent to this email.
+        %div.small-12.column
+          =f.submit 'Save'
+
+
+
+

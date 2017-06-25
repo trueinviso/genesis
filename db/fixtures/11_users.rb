@@ -25,4 +25,4 @@ User.seed_once(:email) do |user|
   user.roles = [customer]
 end
 
-User.all.map { |u| u.update_attributes!(password: "asdfasdf") }
+User.all.map { |u| u.update_attributes!(password: "asdfasdf", password_confirmation: "asdfasdf") }

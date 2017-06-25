@@ -1,0 +1,11 @@
+$("#edit-user").html("<%= escape_javascript(render partial: 'edit_subscription', locals: { user: @user }) %>");
+$("#edit-user").css("padding", "0");
+
+$('.notifications-link').removeClass('active-link');
+$('.profile-link').removeClass('active-link');
+$('.billing-link').addClass('active-link');
+
+$('input[type=radio]', '.edit_user').on('change', function() {
+  $('.radio').toggleClass('active');
+});
+

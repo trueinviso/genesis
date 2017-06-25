@@ -3,20 +3,19 @@ Rails.application.routes.draw do
 
   mount ImageUploader::UploadEndpoint => "/images/upload"
 
-  get 'sessions/new'
-
-  get '/sign_up',  to: 'users#new'
-  post '/sign_up', to: 'users#create'
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
 
   resources :subscriptions, except: [:index]
   resources :screens, only: [:index, :show]
   resources :downloaded_screens, only: [:index]
   resources :favorite_screens, only: [:index]
-  resources :users, only: [:edit, :update]
+  resources :users, only: [:update]
 
-  get    '/login',   to: 'sessions#new'
-  post   '/login',   to: 'sessions#create'
-  get    '/logout',  to: 'sessions#destroy'
+  get 'search', to: 'screens#search'
+
+  get 'profile', to: 'users#edit'
+  get 'profile/notifications', to: 'users#notifications'
+  get 'profile/subscription', to: 'users#edit_subscription'
 
   namespace :admin do
     resources :screens
@@ -24,5 +23,5 @@ Rails.application.routes.draw do
     root 'screens#index'
   end
 
-  root to: 'sessions#new'
+  root to: "screens#index"
 end

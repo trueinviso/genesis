@@ -1,6 +1,10 @@
 class SubscriptionService
-  def create_customer(payload)
-    Stripe::Customer.create(payload)
+  def create_customer(user, payload)
+    if user.stripe_id?
+      find_customer(user.stripe_id)
+    else
+      Stripe::Customer.create(payload)
+    end
   end
 
   # Use this to update payment token?
