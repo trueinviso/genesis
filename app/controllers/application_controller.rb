@@ -12,14 +12,20 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def verify_subscribed
+    redirect_to(new_subscription_path) unless current_user_subscribed?
+  end
+
   def user_not_authorized
     flash[:alert] = "You are not authorized to perform this action."
     redirect_to(request.referrer || new_user_session_path)
   end
 
   def verify_signed_in
-    unless user_signed_in?
-      redirect_to new_user_session_path
+    if user_signed_in? && !current_user.subscribed?
+      redirect_to new_subscription_path
+    elsif !user_signed_in?
+      redirect_to new_session_path
     end
   end
 

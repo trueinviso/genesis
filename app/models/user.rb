@@ -21,6 +21,10 @@ class User < ApplicationRecord
     true
   end
 
+  def subscribed?
+    subscription.present? && subscription.stripe_subscription_id?
+  end
+
   def accept_terms_and_conditions
     unless terms_and_conditions?
       errors.add(:terms_and_conditions, "must be accepted")

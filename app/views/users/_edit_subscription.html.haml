@@ -38,7 +38,9 @@
           = f.text_field :email
           %label All billing-related emails will be sent to this email.
         %div.small-12.column
-          =f.submit 'Save'
+          = link_to "Cancel Subscription", subscription_path(user.subscription), method: :delete
+        %div.small-12.column
+          = f.submit 'Save'
 
 
 

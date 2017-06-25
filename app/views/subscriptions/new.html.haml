@@ -23,18 +23,18 @@
               %fieldset
                 %div.small-12.columns
                   = label_tag(:card_number, 'Card details*')
-                  = text_field_tag :card_number, nil, placeholder: 'Card number', size: 20
+                  = text_field_tag :card_number, nil, placeholder: 'Card number', size: 20, data: { stripe: "number" }
                   %div.error-message#card_number-error
                 %div.small-12.medium-3.columns
                   = label_tag(:card_month, 'Expiration month*')
-                  = select_month Date.today, { use_month_numbers: true }, { id: 'card_month' }
+                  = select_month Date.today, { use_month_numbers: true }, { id: 'card_month', data: { stripe: "exp-month" } }
                 %div.small-12.medium-3.columns
                   = label_tag(:card_year, 'Expiration year*')
-                  = select_year Date.today, { end_year: Date.today.year + 10 }, { id: 'card_year' }
+                  = select_year Date.today, { end_year: Date.today.year + 10 }, { id: 'card_year' , data: { stripe: "exp-year" } }
                   %div.error-message#cvc-error
                 %div.small-12.medium-6.columns
                   = label_tag(:cvc, 'CVC: required')
-                  = text_field_tag :cvc, nil, placeholder: 'CVC', size: 4
+                  = text_field_tag :cvc, nil, placeholder: 'CVC', size: 4, data: { stripe: "cvc" }
                   %div.error-message#cvc-error
 
             %div.small-12.columns
