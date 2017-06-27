@@ -38,7 +38,7 @@
                   %div.error-message#cvc-error
 
             %div.small-12.columns
-              %div.small-12.columns= f.submit 'Get started', id: 'stripe-submit'
+              %div.small-12.columns= f.submit 'Get started', id: 'stripe-submit', data: { disable_with: "Please wait..." }
 
               %div.small-12.columns.instructions
                 Your card will be charged upon submitting this form and begin your subscription.

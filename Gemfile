@@ -49,6 +49,7 @@ gem 'jquery-turbolinks'
 gem 'shrine'
 gem 'aws-sdk', '~> 2.1'
 gem 'roda'
+gem 'capistrano'
 ###
 gem "seed-fu", "~> 2.3"
 gem "forgery"

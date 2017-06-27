@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :subscriptions, except: [:index]
   resources :screens, only: [:index, :show]
   resources :downloaded_screens, only: [:index]
-  resources :favorite_screens, only: [:index]
+  resources :favorite_screens, only: [:index, :create]
   resources :users, only: [:update]
 
   get 'search', to: 'screens#search'

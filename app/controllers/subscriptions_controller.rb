@@ -26,6 +26,7 @@ class SubscriptionsController < ApplicationController
     subscription = current_user.subscription
     subscription.update!({ stripe_subscription_id: nil })
     sign_out current_user
+    redirect_to new_user_session_path
   end
 
   private
@@ -39,22 +40,21 @@ class SubscriptionsController < ApplicationController
     end
 
     def build_subscription(stripe_customer, stripe_subscription)
-      default_card =  stripe_customer.sources.select{ |card| card.id == stripe_customer.default_source }.first
       Subscription.find_or_initialize_by(user_id: current_user.id).update_attributes!(
           user: current_user,
           stripe_customer_id: stripe_customer.id,
           stripe_subscription_id: stripe_subscription.id,
           stripe_payment_token: stripe_customer.default_source,
           stripe_plan_id: stripe_subscription.plan.id,
-          card_exp_month: default_card.exp_month,
-          card_exp_year: default_card.exp_year,
-          card_last4: default_card.last4,
-          card_brand: default_card.brand
+          card_exp_month: subscription_params[:card_exp_month],
+          card_exp_year: subscription_params[:card_exp_year],
+          card_last4: subscription_params[:card_last4],
+          card_brand: subscription_params[:card_brand]
       )
     end
 
     def subscription_params
-      params.permit(:payment_token, :plan)
+      params.permit(:payment_token, :plan, :card_exp_month, :card_exp_year, :card_last4, :card_brand)
     end
 
     def customer_payload

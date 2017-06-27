@@ -2,9 +2,9 @@ class User < ApplicationRecord
   has_one :subscription
   accepts_nested_attributes_for :subscription
   has_many :favorite_screens
-  has_many :favorites, through: :favorite_screens, source: :screen
+  has_many :favorites, -> { distinct }, through: :favorite_screens, source: :screen
   has_many :downloaded_screens
-  has_many :downloaded, through: :downloaded_screens, source: :screen
+  has_many :downloaded, -> { distinct }, through: :downloaded_screens, source: :screen
 
   has_many :user_roles, dependent: :destroy
   has_many :roles, through: :user_roles
