@@ -1,6 +1,4 @@
 class Admin::UsersController < Admin::BaseController
-  include UsersHelper
-  include SessionsHelper
 
   def index
     @users = policy_scope(User).filter(index_params.slice(:search))
