@@ -24,15 +24,15 @@ class SubscriptionService
 
   def cancel_subscription(current_user)
     customer = find_customer(current_user.stripe_id)
-    customer.subscriptions.retrieve(
-      current_user.subscription.stripe_subscription_id
-    ).delete# (at_period_end: true)
-    mark_as_cancelled(current_user.subscription)
+    local_subscription = current_user.subscription
+    subscription = customer.subscriptions.retrieve(local_subscription.stripe_subscription_id)
+    subscription.delete(at_period_end: true)
+    mark_as_cancelled(local_subscription, subscription)
   end
 
   private
 
-  def mark_as_cancelled(subscription)
-    subscription.update!({ ends_at: Time.at(subscription.current_period_end) })
+  def mark_as_cancelled(local_sub, stripe_sub)
+    local_sub.update!({ ends_at: Time.at(stripe_sub.current_period_end) })
   end
 end
