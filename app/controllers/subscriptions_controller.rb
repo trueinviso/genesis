@@ -42,7 +42,7 @@ class SubscriptionsController < ApplicationController
         user: current_user,
         stripe_customer_id: stripe_customer.id,
         stripe_subscription_id: stripe_subscription.id,
-        stripe_payment_token: stripe_customer.default_source,
+        stripe_payment_token: subscription_params[:stripeToken],
         stripe_plan_id: stripe_subscription.plan.id,
         card_exp_month: subscription_params[:card_exp_month],
         card_exp_year: subscription_params[:card_exp_year],
@@ -52,7 +52,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def subscription_params
-    params.permit(:payment_token, :plan, :card_exp_month, :card_exp_year, :card_last4, :card_brand)
+    params.permit(:payment_token, :plan, :card_exp_month, :card_exp_year, :card_last4, :card_brand, :stripeToken)
   end
 
   def customer_payload

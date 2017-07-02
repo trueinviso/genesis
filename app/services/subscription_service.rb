@@ -33,6 +33,6 @@ class SubscriptionService
   private
 
   def mark_as_cancelled(subscription)
-    subscription.update!(ends_at: Time.at(subscription.current_period_end))
+    subscription.update!({ ends_at: Time.at(subscription.current_period_end) })
   end
 end
