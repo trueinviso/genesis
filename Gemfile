@@ -51,8 +51,10 @@ gem 'shrine'
 gem 'aws-sdk', '~> 2.1'
 gem 'roda'
 ###
-gem "seed-fu", "~> 2.3"
-gem "forgery"
+gem 'seed-fu', '~> 2.3'
+gem 'forgery'
+
+gem 'stripe_event'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

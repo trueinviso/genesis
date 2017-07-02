@@ -10,6 +10,7 @@ class CreateSubscriptions < ActiveRecord::Migration[5.1]
       t.string :card_exp_year
       t.string :card_last4
       t.string :card_brand
+      t.datetime :ends_at
 
       t.timestamps
     end
