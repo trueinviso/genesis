@@ -22,9 +22,10 @@ class UsersController < ApplicationController
 
   def update
     authorize User
-    @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
-      redirect_to edit_user_path
+    @user = User.find(current_user.id)
+    if @user.update(user_params)
+      bypass_sign_in(@user)
+      redirect_to root_path
     else
       render 'edit'
     end
@@ -34,6 +35,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :username, :password,
-                                   :password_confirmation, :email)
+                                 :password_confirmation, :email,
+                                 :send_product_updates, :send_new_screens_updates)
   end
 end

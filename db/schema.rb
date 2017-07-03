@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20170703004546) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "screen_id"], name: "index_downloaded_screens_on_user_id_and_screen_id", unique: true
   end
 
   create_table "favorite_screens", force: :cascade do |t|
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(version: 20170703004546) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "screen_id"], name: "index_favorite_screens_on_user_id_and_screen_id", unique: true
   end
 
   create_table "permissions", force: :cascade do |t|
