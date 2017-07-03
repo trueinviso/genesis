@@ -6,8 +6,8 @@
       = image_tag '', id: 'modal-image'
     %div.small-6.columns.right-panel
       %div.top-row
-        %a.download-link{ href: '#' } Download
-        %a.favorite-link{ href: '#' }
+        %a.download-link{ href: '#', data: { method: :post }, disable_with: "Processing"  } Download
+        %a.favorite-link{ href: '#', data: { method: :post }, disable_with: "Processing" }
           %i.icon-heart
       %div.middle-row
         %div.small-12.columns.card-icon

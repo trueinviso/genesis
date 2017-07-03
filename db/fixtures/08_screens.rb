@@ -9,6 +9,9 @@ girl = Picture.create(name: "Girl", image: File.open("spec/files/girl.png"))
 monarch = Picture.create(name: "Monarch", image: File.open("spec/files/monarch.png"))
 mountain = Picture.create(name: "Mountain", image: File.open("spec/files/mountain.png"))
 watch = Picture.create(name: "Watch", image: File.open("spec/files/watch.png"))
+iphone = Picture.create(name: "iPhone", image: File.open("spec/files/iphone7.png"))
+
+iphone_sketch = SketchFile.create(name: "iPhone", file: File.open("spec/files/Untitled.sketch"))
 
 nature = Tag.find_by(name: "Nature")
 outdoor = Tag.find_by(name: "Outdoor")
@@ -37,5 +40,6 @@ Screen.seed(:id,
   { id: 8, picture: girl, category: kids, tags: [outdoor] },
   { id: 9, picture: monarch, category: education, tags: [nature] },
   { id: 10, picture: mountain, category: business, tags: [sporting]},
-  { id: 11, picture: watch, category: finance, tags: [computer] }
+  { id: 11, picture: watch, category: finance, tags: [computer] },
+  { id: 12, picture: iphone, sketch_file: iphone_sketch, category: entertainment, tags: [computer] }
 )

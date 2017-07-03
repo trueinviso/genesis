@@ -6,11 +6,12 @@
 
 $(document).on 'click', '.reveal-link', (e)->
   $('#modal-image').attr('src', $(this).find('img').first().attr('src'))
-  console.log($(this).attr('data-category'))
-  $('.modal-download-count').text($(this).find('.download-count').first().text())
-  $('.modal-favorites-count').text($(this).find('.favorites-count').first().text())
+  $('.modal-download-count').text($(this).attr('data-download-count'))
+  $('.modal-favorites-count').text($(this).attr('data-favorite-count'))
   $('.modal-category').text('Category: ' + $(this).attr('data-category'))
   $('.modal-tag').text('Tag: ' + $(this).attr('data-tag'))
+  $('.download-link').attr('href', '/downloaded_screens?id=' + $(this).attr('data-id'))
+  $('.favorite-link').attr('href', '/favorite_screens?id=' + $(this).attr('data-id'))
   e.preventDefault()
 
   $('#reveal-modal').foundation('open')

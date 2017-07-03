@@ -8,7 +8,9 @@ class Screen < ApplicationRecord
   has_many :downloaded_screens
   has_many :downloaded_by, -> { distinct }, through: :downloaded_screens, source: :user
   has_one  :picture, as: :imageable, dependent: :destroy
+  has_one  :sketch_file, as: :design, dependent: :destroy
   accepts_nested_attributes_for :picture, allow_destroy: true
+  accepts_nested_attributes_for :sketch_file, allow_destroy: true
 
   validates :category, presence: true
 

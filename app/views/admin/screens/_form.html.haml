@@ -25,5 +25,12 @@
         /= f.hidden_field :image, value: f.object.cached_image_data
         = p.file_field :image, html: { multipart: true }
 
+    %div.small-10.columns
+      = f.fields_for :sketch_file do |p|
+        /= f.check_box :remove_file
+        = p.label :file
+        /= f.hidden_field :image, value: f.object.cached_image_data
+        = p.file_field :file, html: { multipart: true }
+
   .actions
     = f.submit 'Save'

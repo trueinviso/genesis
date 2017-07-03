@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170617183302) do
+ActiveRecord::Schema.define(version: 20170703004546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,16 @@ ActiveRecord::Schema.define(version: 20170617183302) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sketch_files", force: :cascade do |t|
+    t.string "name"
+    t.text "file_data"
+    t.string "design_type"
+    t.bigint "design_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["design_type", "design_id"], name: "index_sketch_files_on_design_type_and_design_id"
+  end
+
   create_table "subscriptions", force: :cascade do |t|
     t.integer "user_id"
     t.string "stripe_customer_id"
@@ -83,6 +93,7 @@ ActiveRecord::Schema.define(version: 20170617183302) do
     t.string "card_exp_year"
     t.string "card_last4"
     t.string "card_brand"
+    t.datetime "ends_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
