@@ -6,5 +6,7 @@ class CreateDownloadedScreens < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+
+    add_index :downloaded_screens, [:user_id, :screen_id], unique: true
   end
 end
