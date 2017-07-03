@@ -1,7 +1,6 @@
 %div#edit-subscription-partial
-  = form_for user do |f|
+  = form_for user, url: subscription_path(user.subscription), method: :put, html: { id: 'update-subscription' } do |f|
     = f.fields_for :subscription do |s_form|
-      /= hidden_field_tag 'payment_token', nil, { id: 'payment_token' }
       %div.small-12.columns.section
         %fieldset
           %div.small-12.columns
@@ -26,7 +25,7 @@
               %span="#{user.subscription.card_brand} ...#{user.subscription.card_last4}"
             %div.small-4.column.end.change-card-link
               (
-              = link_to "Change", "#"
+              = link_to "Change", profile_payment_method_path, remote: true
               )
           %div.small-12.columns
             %label= "Expires on #{user.subscription.card_exp_month}/#{user.subscription.card_exp_year[2..3]}"
@@ -40,7 +39,7 @@
         %div.small-12.column
           = link_to "Cancel Subscription", subscription_path(user.subscription), method: :delete
         %div.small-12.column
-          = f.submit 'Save'
+          = f.submit 'Save', id: 'update-stripe-submit', data: { disable_with: "Please wait..." }, onclick: 'updateStripeCard();'
 
 
 

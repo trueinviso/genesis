@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'profile', to: 'users#edit'
   get 'profile/notifications', to: 'users#notifications'
   get 'profile/subscription', to: 'users#edit_subscription'
+  get 'profile/payment_method', to: 'users#edit_payment_method'
 
   namespace :admin do
     resources :screens

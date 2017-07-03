@@ -22,22 +22,44 @@ $(document).ready ->
 
 stripeResponseHandler = (status, response)->
   $form = $('#new_subscription')
+  add_form_fields(status, response, $form)
+
+@updateStripeCard = ->
+  if $('#card_number').length == 0
+    return
+
+  $('#update-subscription').submit ->
+    false
+
+
+  $('#update-stripe-submit').prop('disabled', true)
+  Stripe.card.createToken({
+    number: $('#card_number').val(),
+    cvc: $('#cvc').val(),
+    exp_month: $('#card_month').val(),
+    exp_year: $('#card_year').val()
+  }, updateCardHandler)
+
+updateCardHandler = (status, response)->
+  $form = $('#update-subscription')
+  add_form_fields(status, response, $form)
+
+add_form_fields = (status, response, form)->
   if response.error
     console.log(response.error.message)
   else
     token = response.id
 
-    $form.append $('<input type="hidden" name="payment_token" />').val(token)
+    form.append $('<input type="hidden" name="payment_token" />').val(token)
 
-    $form.append $('<input type="hidden" name="card_last4" />').val(response.card.last4)
-    $form.append $('<input type="hidden" name="card_exp_month" />').val(response.card.exp_month)
-    $form.append $('<input type="hidden" name="card_exp_year" />').val(response.card.exp_year)
-    $form.append $('<input type="hidden" name="card_brand" />').val(response.card.brand)
+    form.append $('<input type="hidden" name="card_last4" />').val(response.card.last4)
+    form.append $('<input type="hidden" name="card_exp_month" />').val(response.card.exp_month)
+    form.append $('<input type="hidden" name="card_exp_year" />').val(response.card.exp_year)
+    form.append $('<input type="hidden" name="card_brand" />').val(response.card.brand)
 
-    $form.get(0).submit()
+    form.get(0).submit()
 
 
-    #$.when($('#payment_token').val(token)).then ->
-    #  $('#new_subscription')[0].submit()
+
 
 

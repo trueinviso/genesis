@@ -10,6 +10,14 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def edit_payment_method
+    authorize User
+    @user = current_user
+
+    respond_to do |format|
+      format.js
+    end
+  end
 
   def notifications
     authorize User

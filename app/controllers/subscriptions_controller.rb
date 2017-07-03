@@ -20,6 +20,13 @@ class SubscriptionsController < ApplicationController
     redirect_to root_url
   end
 
+  def update
+    authorize Subscription
+    subscription_service.update_card(current_user, update_params)
+    subscription_service.update_subscription(current_user.subscription, update_params)
+    redirect_to root_path
+  end
+
   def destroy
     authorize Subscription
     subscription_service.cancel_subscription(current_user)
@@ -53,6 +60,13 @@ class SubscriptionsController < ApplicationController
 
   def subscription_params
     params.permit(:payment_token, :plan, :card_exp_month, :card_exp_year, :card_last4, :card_brand)
+  end
+
+  def update_params
+    params.permit(
+      :card_last4, :card_exp_month, :card_exp_year, :card_brand, :payment_token,
+      :user => [ :email, :subscription_attributes => [ :stripe_plan_id, :id ] ]
+    )
   end
 
   def customer_payload

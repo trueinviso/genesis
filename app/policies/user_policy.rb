@@ -14,4 +14,8 @@ class UserPolicy < ApplicationPolicy
   def edit_subscription?
     true
   end
+
+  def edit_payment_method?
+    true
+  end
 end
