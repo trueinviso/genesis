@@ -8,24 +8,29 @@
         %div.small-12.medium-6.columns
           = label :first_name, 'First Name'
           = f.text_field :first_name
+          %div.error-message#user_first_name-error
         %div.small-12.medium-6.columns
           = label :last_name, 'Last Name'
           = f.text_field :last_name
+          %div.error-message#user_last_name-error
 
         %div.small-12.columns
           = label :email, 'Your email'
           = f.text_field :email
+          %div.error-message#user_email-error
 
         %div.small-12.columns
           = label :username, 'Your username'
           = f.text_field :username
+          %div.error-message#user_username-error
 
         %div.small-12.columns
           = label :password, 'Your Password'
           = f.text_field :password
+          %div.error-message#user_password-error
 
         %div.small-12.columns
-          = f.submit 'Continue', data: { disable_with: "Please wait..." }
+          = f.submit 'Continue', data: { disable_with: "Please wait..." }, id: 'new-user-submit'
 
       %div.small-12.column.instructions
         By clicking "Continue" I agree to our

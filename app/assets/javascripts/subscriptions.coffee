@@ -11,6 +11,9 @@ $(document).ready ->
     $('#new_subscription').submit ->
       false
 
+    if !validate_card()
+      return
+
     $('#stripe-submit').prop('disabled', true)
 
     Stripe.card.createToken({
@@ -25,12 +28,11 @@ stripeResponseHandler = (status, response)->
   add_form_fields(status, response, $form)
 
 @updateStripeCard = ->
-  if $('#card_number').length == 0
-    return
-
   $('#update-subscription').submit ->
     false
 
+  if !validate_card()
+    return
 
   $('#update-stripe-submit').prop('disabled', true)
   Stripe.card.createToken({
@@ -59,6 +61,13 @@ add_form_fields = (status, response, form)->
 
     form.get(0).submit()
 
+validate_card = ->
+  validator.validate_presence('#card_number') &&
+  validator.validate_min_length('#card_number', 13) &&
+  validator.validate_max_length('#card_number', 19) &&
+  validator.validate_presence('#cvc') &&
+  validator.validate_min_length('#cvc', 3) &&
+  validator.validate_max_length('#cvc', 4)
 
 
 

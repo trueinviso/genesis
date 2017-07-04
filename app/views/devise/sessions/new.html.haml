@@ -7,18 +7,20 @@
             Welcome back!
 
 
-        = form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+        = form_for resource, as: resource_name, url: session_path(resource_name), html: { id: 'sign-in-form' } do |f|
           /%div.row.small-11.medium-8.large-4.columns.error-message#sign-in-email-error
           %div.row.align-center
             %div.small-12.medium-8.column
               = f.label :email, 'Your email or username'
               = f.email_field :email, id: 'sign-in-email', placeholder: 'Email Address'
+              %div.error-message#sign-in-email-error
           %div.row.align-center
             /%div.small-4.column.error-message#sign-in-password-error
             %div.small-12.medium-8.column
               .forgot-password-link= link_to 'Forgot password?', '#'
               .small-6.column.password-label= f.label :password, 'Your password'
               = f.password_field :password, id: 'sign-in-password', placeholder: 'Password'
+              %div.error-message#sign-in-password-error
 
           %div.row.align-center
             %div.small-12.medium-8.column
