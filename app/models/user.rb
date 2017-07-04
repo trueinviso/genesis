@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :user_permissions, dependent: :destroy
   has_many :permissions, through: :user_permissions
 
+  after_touch :clear_association_cache
+
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
 #  validate :accept_terms_and_conditions
