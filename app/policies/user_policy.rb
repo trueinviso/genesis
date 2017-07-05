@@ -1,21 +1,21 @@
 class UserPolicy < ApplicationPolicy
   def edit?
-    true
+    user.subscribed? || user.role?(:admin)
   end
 
   def update?
-    true
+    user.subscribed? || user.role?(:admin)
   end
 
   def notifications?
-    true
+    user.subscribed? || user.role?(:admin)
   end
 
   def edit_subscription?
-    true
+    user.subscribed? || user.role?(:admin)
   end
 
   def edit_payment_method?
-    true
+    user.subscribed? || user.role?(:admin)
   end
 end

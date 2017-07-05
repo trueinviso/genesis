@@ -17,10 +17,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
 #  validate :accept_terms_and_conditions
-
-  def admin?
-    #role == 'admin'
-    true
+  def role?(role)
+    roles.any? { |r| r.name.underscore.to_sym == role }
   end
 
   def subscribed?

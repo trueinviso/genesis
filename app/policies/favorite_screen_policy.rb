@@ -13,10 +13,10 @@ class FavoriteScreenPolicy < ApplicationPolicy
   end
 
   def index?
-    true
+    user.subscribed? || user.role?(:admin)
   end
 
   def create?
-    true
+    user.subscribed? || user.role?(:admin)
   end
 end

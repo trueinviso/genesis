@@ -1,7 +1,5 @@
 class Admin::BaseController < ActionController::Base
   protect_from_forgery with: :exception
-  include SessionsHelper
-  include ApplicationHelper
   include Pundit
 
   after_action :verify_authorized
@@ -24,7 +22,7 @@ class Admin::BaseController < ActionController::Base
     ###########################
 
     def require_login
-      unless logged_in? && current_user.admin?
+      unless user_signed_in? && current_user.role?(:admin)
         redirect_to root_path
       end
     end

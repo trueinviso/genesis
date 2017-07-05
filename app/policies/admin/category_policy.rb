@@ -13,26 +13,26 @@ class Admin::CategoryPolicy < ApplicationPolicy
   end
 
   def index?
-    user.admin?
+    user.role?(:admin)
   end
 
   def new?
-    user.admin?
+    user.role?(:admin)
   end
 
   def create?
-    user.admin?
+    user.role?(:admin)
   end
 
   def update?
-    user.admin?
+    user.role?(:admin)
   end
 
   def show?
-    user.admin?
+    user.role?(:admin)
   end
 
   def destroy?
-    user.admin?
+    user.role?(:admin)
   end
 end

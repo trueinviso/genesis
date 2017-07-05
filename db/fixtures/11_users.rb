@@ -1,4 +1,4 @@
-administrator = Role.find_by(name: "administrator")
+administrator = Role.find_by(name: "admin")
 customer = Role.find_by(name: "customer")
 
 airplane = Screen.find_by(id: 1)

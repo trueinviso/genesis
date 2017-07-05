@@ -1,9 +1,9 @@
 class SubscriptionPolicy < ApplicationPolicy
   def destroy?
-    true
+    (user.subscribed? && user.subscription.id == record.id) || user.role?(:admin)
   end
 
   def update?
-    true
+    (user.subscribed? && user.subscription.id == record.id) || user.role?(:admin)
   end
 end

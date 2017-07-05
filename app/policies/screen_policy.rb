@@ -13,14 +13,14 @@ class ScreenPolicy < ApplicationPolicy
   end
 
   def index?
-    true
+    user.subscribed? || user.role?(:admin)
   end
 
   def show?
-    true
+    user.subscribed? || user.role?(:admin)
   end
 
   def search?
-    true
+    user.subscribed? || user.role?(:admin)
   end
 end
