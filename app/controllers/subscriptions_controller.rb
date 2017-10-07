@@ -1,5 +1,4 @@
 class SubscriptionsController < ApplicationController
-
   skip_after_action :verify_authorized, only: [:new, :create]
   skip_before_action :verify_signed_in, only: [:new, :create]
 
@@ -12,7 +11,7 @@ class SubscriptionsController < ApplicationController
     current_user.update!({ stripe_id: stripe_customer.id })
 
     stripe_subscription = subscription_service.create_subscription(
-      stripe_customer, subscription_payload(stripe_customer)
+      stripe_customer, subscription_payload
     )
 
     build_subscription(stripe_customer, stripe_subscription)
@@ -46,15 +45,15 @@ class SubscriptionsController < ApplicationController
 
   def build_subscription(stripe_customer, stripe_subscription)
     Subscription.find_or_initialize_by(user_id: current_user.id).update_attributes!(
-        user: current_user,
-        stripe_customer_id: stripe_customer.id,
-        stripe_subscription_id: stripe_subscription.id,
-        stripe_payment_token: stripe_customer.default_source,
-        stripe_plan_id: stripe_subscription.plan.id,
-        card_exp_month: subscription_params[:card_exp_month],
-        card_exp_year: subscription_params[:card_exp_year],
-        card_last4: subscription_params[:card_last4],
-        card_brand: subscription_params[:card_brand]
+      user: current_user,
+      stripe_customer_id: stripe_customer.id,
+      stripe_subscription_id: stripe_subscription.id,
+      stripe_payment_token: stripe_customer.default_source,
+      stripe_plan_id: stripe_subscription.plan.id,
+      card_exp_month: subscription_params[:card_exp_month],
+      card_exp_year: subscription_params[:card_exp_year],
+      card_last4: subscription_params[:card_last4],
+      card_brand: subscription_params[:card_brand],
     )
   end
 
@@ -65,7 +64,7 @@ class SubscriptionsController < ApplicationController
   def update_params
     params.permit(
       :card_last4, :card_exp_month, :card_exp_year, :card_brand, :payment_token,
-      :user => [ :email, :subscription_attributes => [ :stripe_plan_id, :id ] ]
+      user: [:email, subscription_attributes: [:stripe_plan_id, :id]]
     )
   end
 
@@ -73,7 +72,7 @@ class SubscriptionsController < ApplicationController
     { email: current_user.email }
   end
 
-  def subscription_payload(stripe_customer)
+  def subscription_payload
     { source: subscription_params[:payment_token], plan: subscription_params[:plan] }
   end
 

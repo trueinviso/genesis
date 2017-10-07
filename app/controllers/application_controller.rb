@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include Pundit
 
-  layout 'application'
+  layout "application"
 
   before_action :authenticate_user!, unless: :devise_controller?
   before_action :verify_signed_in, unless: :devise_controller?

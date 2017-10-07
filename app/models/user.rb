@@ -14,9 +14,12 @@ class User < ApplicationRecord
 
   after_touch :clear_association_cache
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable,
+         :validatable
 
-#  validate :accept_terms_and_conditions
+  # validate :accept_terms_and_conditions
+
   def role?(role)
     roles.any? { |r| r.name.underscore.to_sym == role }
   end

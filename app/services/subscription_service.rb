@@ -10,7 +10,7 @@ class SubscriptionService
 
   def create_subscription(customer, payload)
     # Need to check if customer has active subscription
-    raise "User already has active subscription" if customer.subscriptions.count > 0
+    raise "User already has active subscription" if customer.subscriptions.count.positive?
     customer.subscriptions.create(payload)
   end
 
@@ -52,7 +52,7 @@ class SubscriptionService
 
   def update_local_plan_details(subscription, params)
     subscription.update!(
-      stripe_plan_id: params[:user][:subscription_attributes][:stripe_plan_id]
+      stripe_plan_id: params[:user][:subscription_attributes][:stripe_plan_id],
     )
   end
 
@@ -63,7 +63,7 @@ class SubscriptionService
         card_exp_month: params[:card_exp_month],
         card_exp_year: params[:card_exp_year],
         card_last4: params[:card_last4],
-        card_brand: params[:card_brand]
+        card_brand: params[:card_brand],
       )
     end
   end

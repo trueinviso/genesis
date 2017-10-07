@@ -15,15 +15,17 @@ class Screen < ApplicationRecord
   validates :category, presence: true
 
   def self.tag_name(tag_name)
-    includes(:picture, :favorite_screens, :downloaded_screens).joins(:tags).where('tags.name = :tag_name', tag_name: tag_name)
+    includes(:picture, :favorite_screens, :downloaded_screens)
+      .joins(:tags)
+      .where("tags.name = :tag_name", tag_name: tag_name)
   end
 
   def self.category_name(category_name)
-    joins(:category).where('categories.name = :category_name', category_name: category_name)
+    joins(:category).where("categories.name = :category_name", category_name: category_name)
   end
 
   def self.search(search)
-    joins(:tags, :category).where('categories.name ILIKE :search OR ' \
-                                  'tags.name ILIKE :search', search: "%#{search}%")
+    joins(:tags, :category).where("categories.name ILIKE :search OR " \
+                                  "tags.name ILIKE :search", search: "%#{search}%")
   end
 end

@@ -1,15 +1,16 @@
-class Admin::BaseController < ActionController::Base
-  protect_from_forgery with: :exception
-  include Pundit
+module Admin
+  class BaseController < ActionController::Base
+    protect_from_forgery with: :exception
+    include Pundit
 
-  after_action :verify_authorized
-  before_action :require_login
+    after_action :verify_authorized
+    before_action :require_login
 
-  #layout 'admin'
+    # layout 'admin'
 
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-  private
+    private
 
     # Override pundit methods to namespace policies in admin
     def authorize(record, query = nil)
@@ -31,4 +32,5 @@ class Admin::BaseController < ActionController::Base
       flash[:alert] = "You are not authorized to perform this action."
       redirect_to(request.referrer || root_path)
     end
+  end
 end
