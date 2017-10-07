@@ -13,4 +13,3 @@ class NotificationPolicy < ApplicationPolicy
     user.role?(:admin)
   end
 end
-

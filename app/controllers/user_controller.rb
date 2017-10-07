@@ -18,8 +18,10 @@ class UserController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :password,
-                                 :password_confirmation, :email,
-                                 :send_product_updates, :send_new_screens_updates)
+    params.require(:user).permit(
+      :first_name, :last_name, :username, :password,
+      :password_confirmation, :email,
+      :send_product_updates, :send_new_screens_updates
+    )
   end
 end
