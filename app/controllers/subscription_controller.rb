@@ -85,8 +85,4 @@ class SubscriptionController < ApplicationController
   def subscription_payload
     { source: subscription_params[:payment_token], plan: subscription_params[:plan] }
   end
-
-  def subscription_service
-    SubscriptionService.new
-  end
 end

@@ -12,7 +12,8 @@ Rails.application.routes.draw do
     }
 
   resource :subscription,
-    except: [:index, :edit]
+    except: [:index, :edit],
+    controller: :subscription
 
   resources :screens,
     only: [:index, :show]
