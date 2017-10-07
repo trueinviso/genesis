@@ -1,4 +1,6 @@
-class SubscriptionService
+module SubscriptionService
+  extend self
+
   def create_customer(payload)
     Stripe::Customer.create(payload)
   end
