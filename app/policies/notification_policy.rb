@@ -1,12 +1,4 @@
-class SubscriptionPolicy < ApplicationPolicy
-  def destroy?
-    subscriber? || admin?
-  end
-
-  def update?
-    subscriber? || admin?
-  end
-
+class NotificationPolicy < ApplicationPolicy
   def edit?
     subscriber? || admin?
   end
@@ -21,3 +13,4 @@ class SubscriptionPolicy < ApplicationPolicy
     user.role?(:admin)
   end
 end
+

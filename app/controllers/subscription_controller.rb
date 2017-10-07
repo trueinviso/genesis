@@ -1,9 +1,15 @@
-class SubscriptionsController < ApplicationController
+class SubscriptionController < ApplicationController
   skip_after_action :verify_authorized, only: [:new, :create]
   skip_before_action :verify_signed_in, only: [:new, :create]
+  before_action :set_subscription, only: [:edit, :update, :destroy]
 
   def new
     @subscription = Subscription.new
+  end
+
+  def edit
+    authorize @subscription
+    @user = current_user
   end
 
   def create
@@ -20,20 +26,24 @@ class SubscriptionsController < ApplicationController
   end
 
   def update
-    authorize Subscription
+    authorize @subscription
     subscription_service.update_card(current_user, update_params)
     subscription_service.update_subscription(current_user.subscription, update_params)
     redirect_to root_path
   end
 
   def destroy
-    authorize Subscription
+    authorize @subscription
     subscription_service.cancel_subscription(current_user)
     sign_out current_user
     redirect_to new_user_session_path
   end
 
   private
+
+  def set_subscription
+    @subscription ||= current_user.subscription
+  end
 
   def find_or_create_customer
     if current_user.stripe_id.present?

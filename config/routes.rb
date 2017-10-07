@@ -5,20 +5,44 @@ Rails.application.routes.draw do
   mount FileUploader::UploadEndpoint => "/files/upload"
   mount StripeEvent::Engine, at: '/stripe/webhook'
 
-  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
+  devise_for :users,
+    controllers: {
+      sessions: "users/sessions",
+      registrations: "users/registrations",
+    }
 
-  resources :subscriptions, except: [:index]
-  resources :screens, only: [:index, :show]
-  resources :downloaded_screens, only: [:index, :create]
-  resources :favorite_screens, only: [:index, :create]
-  resources :users, only: [:update]
+  resource :subscription,
+    except: [:index, :edit]
+
+  resources :screens,
+    only: [:index, :show]
+
+  resources :downloaded_screens,
+    only: [:index, :create]
+
+  resources :favorite_screens,
+    only: [:index, :create]
+
+  resource :user,
+    only: [:update]
 
   get 'search', to: 'screens#search'
 
-  get 'profile', to: 'users#edit'
-  get 'profile/notifications', to: 'users#notifications'
-  get 'profile/subscription', to: 'users#edit_subscription'
-  get 'profile/payment_method', to: 'users#edit_payment_method'
+  scope :profile, as: "profile" do
+    get "/", to: "user#edit"
+
+    resource :notification,
+      controller: :notifications,
+      only: [:edit]
+
+    resource :subscription,
+      controller: :subscription,
+      only: [:edit]
+
+    resource :payment_method,
+      controller: :payment_method,
+      only: [:edit]
+  end
 
   namespace :admin do
     resources :screens

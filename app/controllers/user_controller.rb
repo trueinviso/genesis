@@ -1,35 +1,12 @@
-class UsersController < ApplicationController
+class UserController < ApplicationController
   def edit
     authorize User
-    @user = User.find(current_user.id)
-  end
-
-  def edit_subscription
-    authorize User
     @user = current_user
-  end
-
-  def edit_payment_method
-    authorize User
-    @user = current_user
-
-    respond_to do |format|
-      format.js
-    end
-  end
-
-  def notifications
-    authorize User
-    @user = User.find(current_user.id)
-
-    respond_to do |format|
-      format.js
-    end
   end
 
   def update
     authorize User
-    @user = User.find(current_user.id)
+    @user = current_user
     if @user.update(user_params)
       bypass_sign_in(@user)
       redirect_to root_path

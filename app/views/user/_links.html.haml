@@ -2,8 +2,8 @@
   %div.small-12.columns
     = link_to "Your profile", profile_path, class: 'active-link profile-link'
   %div.small-12.columns
-    = link_to "Notifications", profile_notifications_path, class: 'notifications-link', remote: true
+    = link_to "Notifications", edit_profile_notification_path, class: 'notifications-link', remote: true
   - if current_user.subscription.present?
     %div.small-12.columns
-      = link_to "Billing info", profile_subscription_path, class: 'billing-link', remote: true
+      = link_to "Billing info", edit_profile_subscription_path, class: 'billing-link', remote: true
 

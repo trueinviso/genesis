@@ -25,7 +25,7 @@
               %span="#{user.subscription.card_brand} ...#{user.subscription.card_last4}"
             %div.small-4.column.end.change-card-link
               (
-              = link_to "Change", profile_payment_method_path, remote: true
+              = link_to "Change", edit_profile_payment_method_path, remote: true
               )
           %div.small-12.columns
             %label= "Expires on #{user.subscription.card_exp_month}/#{user.subscription.card_exp_year[2..3]}"

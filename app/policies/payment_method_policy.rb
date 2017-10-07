@@ -1,12 +1,4 @@
-class SubscriptionPolicy < ApplicationPolicy
-  def destroy?
-    subscriber? || admin?
-  end
-
-  def update?
-    subscriber? || admin?
-  end
-
+class PaymentMethodPolicy < ApplicationPolicy
   def edit?
     subscriber? || admin?
   end
