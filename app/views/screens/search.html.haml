@@ -1,19 +1,19 @@
-%div.screens-wrapper.row
-  %div.small-3.columns.screens-categories-list
-    %div.searched-for.text-right
+.screens-wrapper.row
+  .small-3.columns.screens-categories-list
+    .searched-for.text-right
       Results for
-    %div.search-term
-      = "#{params[:search]}"
+    .search-term
+      = params[:search]
       = link_to "x", screens_path
 
-  %div.small-9.columns.screens-right-panel
+  .small-9.columns.screens-right-panel
     //------ Cards -------//
-    %div.screens-card-list
+    .screens-card-list
       %ul.small-block-grid-5
         - @screens.each do |screen|
           %li
             - cache screen do
-              = render partial: 'shared/card', locals: { screen: screen }
+              = render partial: "shared/card", locals: { screen: screen }
 
-= render partial: 'shared/screen_modal'
+= render partial: "shared/screen_modal"
 

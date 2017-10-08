@@ -17,10 +17,10 @@ $(document).ready ->
     $('#stripe-submit').prop('disabled', true)
 
     Stripe.card.createToken({
-      number: $('#card_number').val(),
+      number: $('#card-number').val(),
       cvc: $('#cvc').val(),
-      exp_month: $('#card_month').val(),
-      exp_year: $('#card_year').val()
+      exp_month: $('#card-month').val(),
+      exp_year: $('#card-year').val()
     }, stripeResponseHandler)
 
 stripeResponseHandler = (status, response)->
@@ -28,7 +28,7 @@ stripeResponseHandler = (status, response)->
   add_form_fields(status, response, $form)
 
 @updateStripeCard = ->
-  return unless $('#card_number').length
+  return unless $('#card-number').length
   $('#update-subscription').submit ->
     false
 
@@ -37,10 +37,10 @@ stripeResponseHandler = (status, response)->
 
   $('#update-stripe-submit').prop('disabled', true)
   Stripe.card.createToken({
-    number: $('#card_number').val(),
+    number: $('#card-number').val(),
     cvc: $('#cvc').val(),
-    exp_month: $('#card_month').val(),
-    exp_year: $('#card_year').val()
+    exp_month: $('#card-month').val(),
+    exp_year: $('#card-year').val()
   }, updateCardHandler)
 
 updateCardHandler = (status, response)->
@@ -63,9 +63,9 @@ add_form_fields = (status, response, form)->
     form.get(0).submit()
 
 validate_card = ->
-  validator.validate_presence('#card_number') &&
-  validator.validate_min_length('#card_number', 13) &&
-  validator.validate_max_length('#card_number', 19) &&
+  validator.validate_presence('#card-number') &&
+  validator.validate_min_length('#card-number', 13) &&
+  validator.validate_max_length('#card-number', 19) &&
   validator.validate_presence('#cvc') &&
   validator.validate_min_length('#cvc', 3) &&
   validator.validate_max_length('#cvc', 4)

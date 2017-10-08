@@ -1,8 +1,10 @@
-%div.row
-  %div.small-12.columns.wrapper
-    %div.columns.small-3
-      = render 'links'
-    %div.forms.small-9.columns#partial
-      %div#edit-user.row
-        = link_to "Sign out", destroy_user_session_path, :method => :delete
-        = render partial: 'form'
+.row
+  .small-12.columns.wrapper
+    .columns.small-3
+      = render "links"
+    .forms.small-9.columns#partial
+      .row#edit-user
+        = link_to "Sign out",
+          destroy_user_session_path,
+          method: :delete
+        = render "form", user: @user

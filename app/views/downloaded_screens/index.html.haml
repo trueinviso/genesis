@@ -1,14 +1,14 @@
-%div.screens-wrapper.row
+.screens-wrapper.row
 
   //------ Categories ------//
-  %div.small-3.columns.screens-categories-list
+  .small-3.columns.screens-categories-list
     %h2 Your downloads
 
-  %div.small-9.columns.screens-right-panel
+  .small-9.columns.screens-right-panel
     //------ Cards -------//
-    %div.screens-card-list
+    .screens-card-list
       %ul.small-block-grid-5
         - @downloaded_screens.each do |downloaded_screen|
           %li
             - cache downloaded_screen do
-              = render partial: 'shared/card', locals: { screen: downloaded_screen.screen }
+              = render "shared/card", screen: downloaded_screen.screen

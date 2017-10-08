@@ -1,23 +1,27 @@
-%div.small-12.columns#reveal-modal.reveal-modal{"aria-hidden" => "true", "aria-labelledby" => "modalTitle", "data-reveal" => "", :role => "dialog" }
-  %div.small-1.columns.close-wrapper
-    %a.close-reveal-modal{"aria-label" => "Close"} ×
-  %div.small-5.columns.small-centered
-    %div.small-6.columns#card
-      = image_tag '', id: 'modal-image'
-    %div.small-6.columns.right-panel
-      %div.top-row
-        %a.download-link{ href: '#', data: { method: :post }, disable_with: "Processing"  } Download
-        %a.favorite-link{ href: '#', data: { method: :post }, disable_with: "Processing" }
+.small-12.columns.reveal-modal#reveal-modal{ "aria-hidden" => "true",
+  "aria-labelledby" => "modalTitle",
+  "data-reveal" => "", :role => "dialog" }
+  .small-1.columns.close-wrapper
+    %a.close-reveal-modal{ "aria-label" => "Close" } ×
+  .small-5.columns.small-centered
+    .small-6.columns#card
+      = image_tag "", id: "modal-image"
+    .small-6.columns.right-panel
+      .top-row
+        %a.download-link{ href: "#",
+          data: { method: :post },
+          disable_with: "Processing" } Download
+        %a.favorite-link{ href: "#", data: { method: :post }, disable_with: "Processing" }
           %i.icon-heart
-      %div.middle-row
-        %div.small-12.columns.card-icon
+      .middle-row
+        .small-12.columns.card-icon
           %i.icon-download
           %span.modal-download-count
-        %div.small-12.columns.card-icon
+        .small-12.columns.card-icon
           %i.icon-heart-empty
           %span.modal-favorites-count
 
-      %div.bottom-row
+      .bottom-row
         %span.small-12.columns.modal-category
         %span.small-12.columns.modal-tag
 

@@ -1,19 +1,30 @@
-%div.small-12.columns
+.small-12.columns
   %fieldset
-    %div.small-12.columns
-      = label_tag(:card_number, 'Card details*')
-      = text_field_tag :card_number, nil, placeholder: 'Card number', size: 20, data: { stripe: "number" }
-      %div.error-message#card_number-error
-    %div.small-12.medium-3.columns
-      = label_tag(:card_month, 'Expiration month*')
-      = select_month Date.today, { use_month_numbers: true }, { id: 'card_month', data: { stripe: "exp-month" } }
-      %div.error-message#card_month-error
-    %div.small-12.medium-3.columns
-      = label_tag(:card_year, 'Expiration year*')
-      = select_year Date.today, { end_year: Date.today.year + 10 }, { id: 'card_year' , data: { stripe: "exp-year" } }
-      %div.error-message#card_year-error
-    %div.small-12.medium-6.columns
-      = label_tag(:cvc, 'CVC: required')
-      = text_field_tag :cvc, nil, placeholder: 'CVC', size: 4, data: { stripe: "cvc" }
-      %div.error-message#cvc-error
-
+    .small-12.columns
+      = label_tag(:"card-number", "Card details*")
+      = text_field_tag :"card-number",
+        nil,
+        placeholder: "Card number",
+        size: 20,
+        data: { stripe: "number" }
+      .error-message#card-number-error
+    .small-12.medium-3.columns
+      = label_tag(:"card-month", "Expiration month*")
+      = select_month Date.today,
+        { use_month_numbers: true },
+        { id: "card-month", data: { stripe: "exp-month" } }
+      .error-message#card-month-error
+    .small-12.medium-3.columns
+      = label_tag(:"card-year", "Expiration year*")
+      = select_year Date.today,
+        { end_year: Date.today.year + 10 },
+        { id: "card-year", data: { stripe: "exp-year" } }
+      .error-message#card-year-error
+    .small-12.medium-6.columns
+      = label_tag(:cvc, "CVC: required")
+      = text_field_tag :cvc,
+        nil,
+        placeholder: "CVC",
+        size: 4,
+        data: { stripe: "cvc" }
+      .error-message#cvc-error

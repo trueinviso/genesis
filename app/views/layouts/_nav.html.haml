@@ -1,7 +1,7 @@
-%div.small-12.columns#nav
-  %h1.small-2.medium-2.columns.text-right= link_to 'Adam', screens_path
+.small-12.columns#nav
+  %h1.small-2.medium-2.columns.text-right= link_to "Adam", screens_path
   - if current_user.present?
-    = render partial: 'layouts/nav_search'
-    = render partial: 'layouts/nav_links'
+    = render "layouts/nav_search"
+    = render "layouts/nav_links"
   - else
-    = render partial: 'layouts/signed_out_sidebar'
+    = render "layouts/signed_out_sidebar"

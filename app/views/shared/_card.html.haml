@@ -1,17 +1,22 @@
-%div.small-12.medium-4.large-2.columns#card
-  %div.card-image.reveal-link{ data: { category: "#{ screen.category.name }",
-    tag: "#{ screen.tags.first.name }",
-    id: "#{ screen.id }" ,
-    download_count: "#{ screen.downloaded_by.size }",
-    favorite_count: "#{ screen.favorited_by.size }" }}
+.small-12.medium-4.large-2.columns#card
+  .card-image.reveal-link{ data: { category: screen.category.name,
+    tag: screen.tags.first.name,
+    id: screen.id,
+    download_count: screen.downloaded_by.size,
+    favorite_count: screen.favorited_by.size } }
 
     = image_tag screen.picture.image.url(public: true)
-  %div.card-caption
-    %a.card-icon{ href: '#' }
+  .card-caption
+    %a.card-icon{ href: "#" }
       %i.icon-download-cloud
       %span.download-count
         = screen.downloaded_by.size
-    = link_to favorite_screens_path(id: screen.id), class: 'card-icon', method: :post, disable_with: "Processing" do
+    = link_to favorite_screens_path(id: screen.id),
+      class: "card-icon",
+      method: :post,
+      disable_with: "Processing" do
       %i.icon-heart
       %span.favorites-count
         = screen.favorited_by.size
+
+= render "shared/screen_modal"

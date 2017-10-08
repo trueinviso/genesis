@@ -1,4 +1,4 @@
-%div.tags-list
+.tags-list
   %ul
     - tags.each do |tag|
       %li= link_to tag, screens_path(tag_name: tag, category_name: params[:category_name])

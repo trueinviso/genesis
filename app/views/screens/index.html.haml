@@ -1,23 +1,23 @@
-%div.screens-wrapper.row
+.screens-wrapper.row
 
   //------ Categories ------//
-  %div.small-3.columns.screens-categories-list
-    = render partial: 'shared/categories', locals: { categories: Category.includes(:screens).all }
+  .small-3.columns.screens-categories-list
+    = render partial: "shared/categories",
+      locals: { categories: Category.includes(:screens).all }
 
-  %div.small-9.columns.screens-right-panel
+  .small-9.columns.screens-right-panel
 
     - if @tags.present?
       //------ Tags ------//
-      %div.screens-tag-list
-        = render partial: 'shared/tags', locals: { tags: @tags }
+      .screens-tag-list
+        = render partial: "shared/tags", locals: { tags: @tags }
 
     //------ Cards -------//
-    %div.screens-card-list
+    .screens-card-list
       %ul.small-block-grid-5
         - @screens.each do |screen|
           %li
             - cache screen do
-              = render partial: 'shared/card', locals: { screen: screen }
+              = render partial: "shared/card", locals: { screen: screen }
 
-
-= render partial: 'shared/screen_modal'
+= render "shared/screen_modal"

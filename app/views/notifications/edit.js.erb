@@ -1,4 +1,4 @@
- $("#edit-user").html("<%= escape_javascript(render partial: 'notifications') %>");
+ $("#edit-user").html("<%= escape_javascript(render "notifications", user: @user) %>");
  $("#edit-user").css("padding", "0");
  $('.notifications-link').addClass('active-link');
  $('.profile-link').removeClass('active-link');

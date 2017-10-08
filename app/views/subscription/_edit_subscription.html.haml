@@ -1,45 +1,51 @@
-%div#edit-subscription-partial
-  = form_for user, url: subscription_path(user.subscription), method: :put, html: { id: 'update-subscription' } do |f|
+#edit-subscription-partial
+  = form_for user,
+    url: subscription_path(subscription),
+    method: :put,
+    html: { id: "update-subscription" } do |f|
     = f.fields_for :subscription do |s_form|
-      %div.small-12.columns.section
+      .small-12.columns.section
         %fieldset
-          %div.small-12.columns
-            %div.small-6.columns.no-padding
+          .small-12.columns
+            .small-6.columns.no-padding
               %label Plan/Subscription
-            %div.small-6.columns.no-padding
+            .small-6.columns.no-padding
               %label Plan/Subscription
-          %div.small-12.columns
-            %div.monthly-radio.small-6.column.radio{ class: "#{user.subscription.stripe_plan_id == 'monthly' ? 'active' : ''}" }
-              = s_form.radio_button :stripe_plan_id, 'monthly', checked: true
-              = s_form.label(:stripe_plan_id, 'Monthly - $15 every month')
-            %div.yearly-radio.small-6.column.radio{ class: "#{user.subscription.stripe_plan_id == 'yearly' ? 'active' : ''}" }
-              = s_form.radio_button :stripe_plan_id, 'yearly'
-              = s_form.label(:stripe_plan_id, 'Yearly - $120 once a year')
-          %div.small-12.columns
-            %label="Your #{user.subscription.stripe_plan_id} Subscription will renew on <billing date> for <price>"
-      %div.small-12.columns.section#edit-payment-method
+          .small-12.columns
+            .monthly-radio.small-6.column.radio{ class: active_subscription_class("monthly") }
+              = s_form.radio_button :stripe_plan_id, "monthly", checked: true
+              = s_form.label(:stripe_plan_id, "Monthly - $15 every month")
+            .yearly-radio.small-6.column.radio{ class: active_subscription_class("yearly") }
+              = s_form.radio_button :stripe_plan_id, "yearly"
+              = s_form.label(:stripe_plan_id, "Yearly - $120 once a year")
+          .small-12.columns
+            %label Your #{plan_id} Subscription will renew on <billing date> for <price>
+      .small-12.columns.section#edit-payment-method
         %fieldset
-          %div.small-12.columns
+          .small-12.columns
             %label Card on file
-            %div.small-5.column.card-on-file
-              %span="#{user.subscription.card_brand} ...#{user.subscription.card_last4}"
-            %div.small-4.column.end.change-card-link
+            .small-5.column.card-on-file
+              %span #{card_brand} ...#{card_last4}
+            .small-4.column.end.change-card-link
               (
               = link_to "Change", edit_profile_payment_method_path, remote: true
               )
-          %div.small-12.columns
-            %label= "Expires on #{user.subscription.card_exp_month}/#{user.subscription.card_exp_year[2..3]}"
+          .small-12.columns
+            %label Expires on #{expiration_date}
 
-    %div.small-12.columns.section
+    .small-12.columns.section
       %fieldset
-        %div.small-12.column
+        .small-12.column
           = f.label :email, "Billing email"
           = f.text_field :email
           %label All billing-related emails will be sent to this email.
-        %div.small-12.column
-          = link_to "Cancel Subscription", subscription_path(user.subscription), method: :delete
-        %div.small-12.column
-          = f.submit 'Save', id: 'update-stripe-submit', data: { disable_with: "Please wait..." }, onclick: 'updateStripeCard();'
+        .small-12.column
+          = link_to "Cancel Subscription", subscription_path(subscription), method: :delete
+        .small-12.column
+          = f.submit "Save",
+            id: "update-stripe-submit",
+            data: { disable_with: "Please wait..." },
+            onclick: "updateStripeCard();"
 
 
 

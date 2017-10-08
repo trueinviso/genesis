@@ -1,14 +1,16 @@
-%div#notifications
-  = form_for @user, method: :put do |f|
-    - if @user.errors.any?
-      #error_explanation
-        %h2= "#{pluralize(@user.errors.count, "error")} prohibited this media item from being saved:"
+#notifications
+  = form_for user, method: :put do |f|
+    - if user.errors.any?
+      #error-explanation
+        %h2
+          #{pluralize(user.errors.count, 'error')} \
+          prohibited this media item from being saved:
         %ul
-          - @user.errors.full_messages.each do |msg|
+          - user.errors.full_messages.each do |msg|
             %li= msg
 
-    %div.small-12.column
-      .email-notifications-label= label_tag :send_production_updates, 'Email notifications'
+    .small-12.column
+      .email-notifications-label= label_tag :send_production_updates, "Email notifications"
       = f.label :send_product_updates do
         = f.check_box :send_product_updates
         %span.label-top
@@ -16,7 +18,7 @@
         %span.label-bottom
           Get occasional updates about new features and product enhancements.
 
-    %div.small-12.column
+    .small-12.column
       = f.label :send_new_screens_updates do
         = f.check_box :send_new_screens_updates
         %span.label-top
@@ -24,5 +26,5 @@
         %span.label-bottom
           Get occasional updates when new screens are added. Usually once a week.
 
-    %div.small-12.column.save-button
-      = f.submit 'Save'
+    .small-12.column.save-button
+      = f.submit "Save"
