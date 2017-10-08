@@ -19,6 +19,7 @@ class CreateSubscription
 
   def create
     stripe_customer = CreateCustomer.for(user, params)
+    # TODO: Check if user already has active subscription
     stripe_subscription = subscription_service.create_subscription(
       stripe_customer, subscription_payload
     )
