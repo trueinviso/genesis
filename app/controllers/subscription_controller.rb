@@ -19,7 +19,7 @@ class SubscriptionController < ApplicationController
 
   def update
     authorize @subscription
-    SubscriptionService.update_card(current_user, update_params)
+    SubscriptionService.update_card(current_user, update_params) if update_params[:payment_token]
     SubscriptionService.update_subscription(current_user.subscription, update_params)
     redirect_to root_path
   end
