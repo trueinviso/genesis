@@ -7,7 +7,7 @@
             Payment information
 
         %div
-          = form_for @subscription do |f|
+          = form_for @subscription, url: subscription_path do |f|
             /= hidden_field_tag 'payment_token', nil, { id: 'payment_token' }
             %div.small-12.columns
               %div.small-12.columns

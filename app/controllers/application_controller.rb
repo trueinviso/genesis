@@ -28,7 +28,4 @@ class ApplicationController < ActionController::Base
       redirect_to new_session_path
     end
   end
-  def subscription_service
-    SubscriptionService
-  end
 end
