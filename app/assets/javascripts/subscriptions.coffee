@@ -28,6 +28,7 @@ stripeResponseHandler = (status, response)->
   add_form_fields(status, response, $form)
 
 @updateStripeCard = ->
+  return unless $('#card_number').length
   $('#update-subscription').submit ->
     false
 
