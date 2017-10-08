@@ -25,7 +25,7 @@ class User < ApplicationRecord
   end
 
   def subscribed?
-    subscription.present? && subscription.stripe_subscription_id?
+    subscription&.stripe_subscription_id?
   end
 
   def accept_terms_and_conditions
