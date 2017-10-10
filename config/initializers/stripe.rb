@@ -1,5 +1,5 @@
 Stripe.api_key = Rails.application.secrets.stripe_secret_key
 
 StripeEvent.configure do |events|
-  events.subscribe 'customer.subscription.deleted', CancelSubscription.new
+  events.subscribe "customer.subscription.deleted", CancelSubscription.new
 end

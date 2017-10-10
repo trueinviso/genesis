@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   mount ImageUploader::UploadEndpoint => "/images/upload"
   mount FileUploader::UploadEndpoint => "/files/upload"
-  mount StripeEvent::Engine, at: '/stripe/webhook'
+  mount StripeEvent::Engine, at: "/stripe/webhook"
 
   devise_for :users,
     controllers: {
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resource :user,
     only: [:update]
 
-  get 'search', to: 'screens#search'
+  get "search", to: "screens#search"
 
   scope :profile, as: "profile" do
     get "/", to: "user#edit"
@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :screens
     resources :categories
-    root 'screens#index'
+    root "screens#index"
   end
 
   root to: "screens#index"

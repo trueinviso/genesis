@@ -5,9 +5,10 @@ FactoryGirl.define do
 
     trait :with_monthly_subscription do
       after(:build) do |user|
-        create(:subscription,
+        create(
+          :subscription,
           stripe_subscription_id: "monthly_subscription",
-          user: user
+          user: user,
         )
       end
     end

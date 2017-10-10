@@ -26,7 +26,6 @@ education = Category.find_by(name: "Education")
 finance = Category.find_by(name: "Finance")
 food = Category.find_by(name: "Food & Drink")
 kids = Category.find_by(name: "Kids")
-medical = Category.find_by(name: "Medical")
 navigation = Category.find_by(name: "Navigation")
 
 Screen.seed(:id,
@@ -39,7 +38,12 @@ Screen.seed(:id,
   { id: 7, picture: frymire, category: kids, tags: [computer] },
   { id: 8, picture: girl, category: kids, tags: [outdoor] },
   { id: 9, picture: monarch, category: education, tags: [nature] },
-  { id: 10, picture: mountain, category: business, tags: [sporting]},
+  { id: 10, picture: mountain, category: business, tags: [sporting] },
   { id: 11, picture: watch, category: finance, tags: [computer] },
-  { id: 12, picture: iphone, sketch_file: iphone_sketch, category: entertainment, tags: [computer] }
-)
+  {
+    id: 12,
+    picture: iphone,
+    sketch_file: iphone_sketch,
+    category: entertainment,
+    tags: [computer],
+  })

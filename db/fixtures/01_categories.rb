@@ -8,5 +8,4 @@ Category.seed(:id,
   { id: 7, name: "Kids" },
   { id: 8, name: "Lifestyle" },
   { id: 9, name: "Medical" },
-  { id: 10, name: "Navigation" }
-)
+  { id: 10, name: "Navigation" })
