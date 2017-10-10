@@ -64,6 +64,11 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem "rspec-rails", "~> 3.6"
   gem "factory_girl_rails", "~> 4.8"
+  gem "webmock"
+  # Collection of testing matchers
+  gem "shoulda-matchers",
+    git: "https://github.com/thoughtbot/shoulda-matchers.git",
+    branch: "rails-5"
 end
 
 group :development do
