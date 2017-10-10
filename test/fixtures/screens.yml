@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  amazon_s3_link: MyString
-  image_link: MyString
-
-two:
-  amazon_s3_link: MyString
-  image_link: MyString
