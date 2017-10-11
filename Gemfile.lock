@@ -111,6 +111,7 @@ GEM
     concurrent-ruby (1.0.5)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
+    dante (0.2.0)
     devise (4.3.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -287,6 +288,10 @@ GEM
       net-ssh (>= 2.8.0)
     stripe (2.8.0)
       faraday (~> 0.9)
+    stripe-ruby-mock (2.5.0)
+      dante (>= 0.2.0)
+      multi_json (~> 1.0)
+      stripe (>= 2.0.3)
     stripe_event (1.6.0)
       activesupport (>= 3.1)
       stripe (>= 1.6, < 3.0)
@@ -360,6 +365,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   stripe
+  stripe-ruby-mock (~> 2.5.0)
   stripe_event
   turbolinks (~> 5)
   tzinfo-data

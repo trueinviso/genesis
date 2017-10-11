@@ -54,6 +54,7 @@ group :development, :test do
   gem "shoulda-matchers",
     git: "https://github.com/thoughtbot/shoulda-matchers.git",
     branch: "rails-5"
+  gem "stripe-ruby-mock", "~> 2.5.0", require: "stripe_mock"
   gem "webmock"
 end
 

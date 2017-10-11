@@ -1,11 +1,20 @@
 require "rails_helper"
 
 feature "User registration" do
-  # include_context :shared_roles
+  let(:stripe_helper) { StripeMock.create_test_helper }
+
+  before do
+    StripeMock.start
+    mock_stripe_token
+    stripe_helper.create_plan(id: "monthly", amount: 1500)
+  end
+
+  after { StripeMock.stop }
+
   context "Creating account" do
     scenario "user signup" do
       register_new_user
-      expect(current_path).to eq screens_path
+      expect(current_path).to eq root_path
     end
   end
 
@@ -19,5 +28,12 @@ feature "User registration" do
     fill_in "card-number", with: "4111111111111111"
     fill_in "cvc", with: "123"
     click_button "Get started"
+  end
+
+  def mock_stripe_token
+    token = stripe_helper.generate_card_token
+    allow_any_instance_of(SubscriptionController)
+      .to receive(:subscription_params)
+      .and_return({ payment_token: token, plan: "monthly" })
   end
 end

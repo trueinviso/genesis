@@ -1,4 +1,5 @@
 .rubocop.yml
 .rspec
 .haml-lint.yml
+tmp/capybara/*
 public
